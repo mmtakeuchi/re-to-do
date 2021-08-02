@@ -14,6 +14,9 @@ mongoose
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 app.use("/api", taskRoutes);
 
