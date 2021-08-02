@@ -1,0 +1,11 @@
+{
+  "name": "re_to_do",
+  "version": "1.0.0",
+  "description": "todo list ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael T",
+  "license": "ISC"
+}
