@@ -13,10 +13,10 @@ module.exports.getTasks = async (req, res) => {
 };
 
 // POST TASKS
-module.exports.createTask = (req, res) => {
+module.exports.createTask = async (req, res) => {
   try {
     const newTask = new Task(req.body);
-    newTask.save().then((task) => res.json(task));
+    await newTask.save().then((task) => res.json(task));
   } catch (err) {
     console.log(err);
     res.status(500).send("Could not create new task.");
@@ -35,8 +35,13 @@ module.exports.updateTask = async (req, res) => {
 };
 
 // DELETE TASK
-module.exports.deleteTask = (req, res) => {
-  Task.findByIdAndDelete(req.params.id).then((task) =>
-    res.json({ success: true })
-  );
+module.exports.deleteTask = async (req, res) => {
+  try {
+    await Task.findByIdAndDelete(req.params.id).then((task) =>
+      res.json({ success: true })
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Could not delete task.");
+  }
 };

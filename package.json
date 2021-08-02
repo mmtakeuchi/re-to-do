@@ -7,14 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "server:debug": "nodemon --inspect index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Michael T",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.2.0",
+    "config": "^3.3.6",
     "express": "^4.17.1",
-    "mongoose": "^5.13.5",
-    "path": "^0.12.7"
+    "mongoose": "^5.13.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
