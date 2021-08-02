@@ -24,7 +24,6 @@ module.exports.createTask = (req, res) => {
 };
 
 // PUT TASK
-
 module.exports.updateTask = async (req, res) => {
   try {
     const selectedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
@@ -33,4 +32,11 @@ module.exports.updateTask = async (req, res) => {
     console.log(err);
     res.status(500).send("Could not update task.");
   }
+};
+
+// DELETE TASK
+module.exports.deleteTask = (req, res) => {
+  Task.findByIdAndDelete(req.params.id).then((task) =>
+    res.json({ success: true })
+  );
 };
