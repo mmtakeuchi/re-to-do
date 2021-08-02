@@ -14,7 +14,23 @@ module.exports.getTasks = async (req, res) => {
 
 // POST TASKS
 module.exports.createTask = (req, res) => {
-  console.log(req.body);
-  const newTask = new Task(req.body);
-  newTask.save().then((task) => res.json(task));
+  try {
+    const newTask = new Task(req.body);
+    newTask.save().then((task) => res.json(task));
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Could not create new task.");
+  }
+};
+
+// PUT TASK
+
+module.exports.updateTask = async (req, res) => {
+  try {
+    const selectedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
+    await selectedTask.save().then((task) => res.json(task));
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Could not update task.");
+  }
 };
