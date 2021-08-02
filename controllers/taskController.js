@@ -11,3 +11,10 @@ module.exports.getTasks = async (req, res) => {
     res.status(500).send("Something went wrong");
   }
 };
+
+// POST TASKS
+module.exports.createTask = (req, res) => {
+  console.log(req.body);
+  const newTask = new Task(req.body);
+  newTask.save().then((task) => res.json(task));
+};
