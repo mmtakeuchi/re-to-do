@@ -1,9 +1,10 @@
 import React from "react";
+import Task from "./Task";
 
 const TaskList = (props) => {
   console.log(props.tasks);
   const renderTasks = props.tasks.map((task) => (
-    <li key={task._id}>{task.task}</li>
+    <Task key={task._id} task={task} />
   ));
 
   return (

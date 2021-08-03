@@ -15,8 +15,12 @@ module.exports.getTasks = async (req, res) => {
 // POST TASKS
 module.exports.createTask = async (req, res) => {
   try {
-    const newTask = new Task(req.body);
-    await newTask.save().then((task) => res.json(task));
+    const task = new Task(req.body);
+    const newTask = await task.save();
+
+    if (newTask) {
+      res.status(201).send(newTask);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).send("Could not create new task.");
