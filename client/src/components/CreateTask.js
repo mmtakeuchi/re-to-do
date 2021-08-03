@@ -3,13 +3,11 @@ import axios from "axios";
 import TaskForm from "./TaskForm";
 
 const CreateTask = (props) => {
-  console.log(props);
-
   const handleSubmit = async (task) => {
-    console.log({ task });
-    const newTask = await axios
+    await axios
       .post("/api/tasks", { task })
-      .then((res) => console.log(res.data));
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
 
   return (

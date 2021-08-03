@@ -30,7 +30,11 @@ module.exports.createTask = async (req, res) => {
 // PUT TASK
 module.exports.updateTask = async (req, res) => {
   try {
-    const selectedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
+    console.log(req.params.id, req.body);
+    const selectedTask = await Task.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body
+    );
     await selectedTask.save().then((task) => res.json(task));
   } catch (err) {
     console.log(err);

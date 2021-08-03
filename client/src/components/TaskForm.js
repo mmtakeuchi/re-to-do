@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 const TaskForm = (props) => {
-  const history = useHistory();
-  const [text, setText] = useState("");
+  const [text, setText] = useState(props.task ? props.task : "");
 
   const handleInputChange = (e) => {
     setText(e.target.value);
   };
 
   const onSubmit = (e) => {
-    console.log(text);
     props.handleSubmit(text);
-    history.push("/");
   };
 
   return (
